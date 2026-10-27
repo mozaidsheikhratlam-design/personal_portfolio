@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zaid | Data Analyst Portfolio</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ==========================================================================
+           1. CSS VARIABLES & THEME SETUP
+           ========================================================================== */
+        :root {
+            --bg-dark: #0b0f17;
+            --bg-card: #131b29;
+            --bg-card-hover: #1c273a;
+            --bg-accent: #192436;
+            --primary-teal: #00f2fe;
+            --primary-cyan: #4facfe;
+            --accent-glow: rgba(0, 242, 254, 0.15);
+            --accent-glow-strong: rgba(0, 242, 254, 0.35);
+            --text-main: #f0f6fc;
+            --text-muted: #94a3b8;
+            --text-dim: #64748b;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(0, 242, 254, 0.4);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ==========================================================================
+           2. BASE STYLES & RESET
+           ========================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary-teal), var(--primary-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ==========================================================================
+           3. NAVBAR
+           ========================================================================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(11, 15, 23, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .logo-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary-teal);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-link {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-link:hover {
+            color: var(--primary-teal);
+        }
+
+        .btn-header {
+            padding: 10px 20px;
+            border-radius: var(--radius-sm);
+            background: rgba(0, 242, 254, 0.1);
+            color: var(--primary-teal);
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            font-weight: 600;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-header:hover {
+            background: var(--primary-teal);
+            color: var(--bg-dark);
+            box-shadow: 0 0 20px var(--accent-glow-strong);
+        }
+
+        /* Responsive Mobile Nav Toggle (CSS Pure Checkbox Hack) */
+        .menu-toggle {
+            display: none;
+        }
+
+        .menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        /* ==========================================================================
+           4. HERO SECTION
+           ========================================================================== */
+        .hero {
+            padding-top: 180px;
+            padding-bottom: 120px;
+            position: relative;
+            background: radial-gradient(circle at 50% 20%, rgba(0, 242, 254, 0.08) 0%, transparent 50%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 50px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--primary-teal);
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .hero-tag i {
+            font-size: 0.75rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+        }
+
+        .hero-description {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 36px;
+            max-width: 560px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            padding: 14px 32px;
+            border-radius: var(--radius-sm);
+            background: linear-gradient(135deg, var(--primary-teal), var(--primary-cyan));
+            color: var(--bg-dark);
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition-smooth);
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px var(--accent-glow-strong);
+        }
+
+        .btn-secondary {
+            padding: 14px 32px;
+            border-radius: var(--radius-sm);
+            background: var(--bg-card);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Graphic Element */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-card-preview {
+            width: 100%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-header-mock {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .red { background: #ff5f56; }
+        .yellow { background: #ffbd2e; }
+        .green { background: #27c93f; }
+
+        .stat-grid-hero {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .stat-card-hero {
+            background: var(--bg-accent);
+            padding: 16px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-card-hero span {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .stat-card-hero h4 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-teal);
+        }
+
+        .glow-effect {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            background: var(--primary-teal);
+            opacity: 0.15;
+            filter: blur(80px);
+            border-radius: 50%;
+            top: 20%;
+            right: 10%;
+            z-index: 1;
+        }
+
+        /* ==========================================================================
+           5. ABOUT SECTION
+           ========================================================================== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .about-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 36px;
+            transition: var(--transition-smooth);
+        }
+
+        .about-card:hover {
+            border-color: var(--border-hover);
+        }
+
+        .about-icon {
+            font-size: 2rem;
+            color: var(--primary-teal);
+            margin-bottom: 20px;
+        }
+
+        .about-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+        }
+
+        .about-card p {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+            line-height: 1.7;
+        }
+
+        /* ==========================================================================
+           6. SKILLS SECTION
+           ========================================================================== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .skill-category {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 28px;
+            transition: var(--transition-smooth);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-hover);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .category-title i {
+            color: var(--primary-teal);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background: var(--bg-accent);
+            color: var(--text-main);
+            padding: 8px 14px;
+            border-radius: var(--radius-sm);
+            font-size: 0.875rem;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition-smooth);
+        }
+
+        .skill-tag:hover {
+            background: rgba(0, 242, 254, 0.1);
+            color: var(--primary-teal);
+            border-color: rgba(0, 242, 254, 0.3);
+        }
+
+        /* ==========================================================================
+           7. FEATURED PROJECTS SECTION
+           ========================================================================== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition-smooth);
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--border-hover);
+            box-shadow: 0 16px 36px rgba(0,0,0,0.4);
+        }
+
+        .project-header {
+            background: var(--bg-accent);
+            padding: 24px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .project-icon-box {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-sm);
+            background: rgba(0, 242, 254, 0.1);
+            color: var(--primary-teal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .project-link-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-smooth);
+            border: 1px solid var(--border-color);
+        }
+
+        .project-link-icon:hover {
+            color: var(--primary-teal);
+            border-color: var(--primary-teal);
+        }
+
+        .project-body {
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .project-description {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        .project-metrics {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: var(--radius-sm);
+            padding: 14px;
+            margin-bottom: 20px;
+            border: 1px dashed var(--border-color);
+        }
+
+        .metric-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+        }
+
+        .metric-label { color: var(--text-dim); }
+        .metric-value { color: var(--primary-teal); font-weight: 600; }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .project-tag {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 50px;
+            background: var(--bg-accent);
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+        }
+
+        /* ==========================================================================
+           8. EXPERIENCE & EDUCATION (TIMELINE)
+           ========================================================================== */
+        .timeline-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 40px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 11px;
+            top: 4px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--bg-dark);
+            border: 3px solid var(--primary-teal);
+            box-shadow: 0 0 10px var(--accent-glow-strong);
+        }
+
+        .timeline-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            transition: var(--transition-smooth);
+        }
+
+        .timeline-content:hover {
+            border-color: var(--border-hover);
+        }
+
+        .timeline-date {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary-teal);
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .timeline-role {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .timeline-company {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .timeline-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* ==========================================================================
+           9. CONTACT SECTION
+           ========================================================================== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .contact-info-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 36px;
+        }
+
+        .contact-info-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+
+        .contact-info-card p {
+            color: var(--text-muted);
+            margin-bottom: 32px;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-sm);
+            background: var(--bg-accent);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-teal);
+            font-size: 1.2rem;
+        }
+
+        .contact-details span {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+        .contact-details a, .contact-details p {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .social-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-sm);
+            background: var(--bg-accent);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+            transition: var(--transition-smooth);
+        }
+
+        .social-btn:hover {
+            background: var(--primary-teal);
+            color: var(--bg-dark);
+            border-color: var(--primary-teal);
+            transform: translateY(-2px);
+        }
+
+        /* Form Controls */
+        .contact-form {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 36px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: var(--radius-sm);
+            background: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            font-family: inherit;
+            font-size: 0.95rem;
+            outline: none;
+            transition: var(--transition-smooth);
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            border-color: var(--primary-teal);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* ==========================================================================
+           10. FOOTER
+           ========================================================================== */
+        .footer {
+            border-top: 1px solid var(--border-color);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        /* ==========================================================================
+           11. RESPONSIVE MEDIA QUERIES
+           ========================================================================== */
+        @media (max-width: 992px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .hero-description {
+                margin: 0 auto 36px;
+            }
+
+            .hero-cta {
+                justify-content: center;
+            }
+
+            .about-grid, .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-title {
+                font-size: 2.75rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: var(--bg-card);
+                flex-direction: column;
+                padding: 30px;
+                gap: 20px;
+                border-bottom: 1px solid var(--border-color);
+                display: none;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            /* CSS Only Toggle Mechanic */
+            .menu-toggle:checked ~ .nav-links {
+                display: flex;
+            }
+
+            .hero-title {
+                font-size: 2.25rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-container::before {
+                left: 15px;
+            }
+
+            .timeline-item {
+                padding-left: 45px;
+            }
+
+            .timeline-dot {
+                left: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==========================================================================
+       NAVBAR
+       ========================================================================== -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                ZAID<span class="logo-dot"></span>
+            </a>
+
+            <!-- Mobile Checkbox Hack for Pure CSS Menu -->
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="menu-btn">
+                <i class="fa-solid fa-bars"></i>
+            </label>
+
+            <ul class="nav-links">
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="#contact" class="btn-header">Hire Me</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ==========================================================================
+       HERO SECTION
+       ========================================================================== -->
+    <section class="hero">
+        <div class="glow-effect"></div>
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <div class="hero-tag">
+                    <i class="fa-solid fa-chart-line"></i> Data Analyst & Insights Specialist
+                </div>
+                <h1 class="hero-title">
+                    Hi, I'm Zaid.<br>
+                    <span class="gradient-text">Transforming Data</span> into Actionable Insights.
+                </h1>
+                <p class="hero-description">
+                    I bridge the gap between complex raw data and strategic business decisions using Python, SQL, Advanced Excel, Power BI, Tableau, and Machine Learning fundamentals.
+                </p>
+                <div class="hero-cta">
+                    <a href="#projects" class="btn-primary">
+                        View My Work <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a href="#" class="btn-secondary" onclick="alert('Resume download placeholder trigger.'); return false;">
+                        <i class="fa-solid fa-download"></i> Download Resume
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="hero-card-preview">
+                    <div class="card-header-mock">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <div class="stat-grid-hero">
+                        <div class="stat-card-hero">
+                            <span>SQL Queries Executed</span>
+                            <h4>10,000+</h4>
+                        </div>
+                        <div class="stat-card-hero">
+                            <span>Dashboards Created</span>
+                            <h4>25+</h4>
+                        </div>
+                        <div class="stat-card-hero">
+                            <span>Data Cleaning Accuracy</span>
+                            <h4>99.8%</h4>
+                        </div>
+                        <div class="stat-card-hero">
+                            <span>ML Models Built</span>
+                            <h4>12+</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       ABOUT ME SECTION
+       ========================================================================== -->
+    <section id="about" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About <span class="gradient-text">Me</span></h2>
+                <p class="section-subtitle">Driven by curiosity, fueled by data, and focused on business value.</p>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-card">
+                    <i class="fa-solid fa-brain about-icon"></i>
+                    <h3>Analytical Mindset</h3>
+                    <p>
+                        I specialize in dissecting raw, unstructured datasets into clear metrics and structural models. My approach focuses on finding trends, identifying anomalies, and delivering actionable data stories that empower decision-makers.
+                    </p>
+                </div>
+
+                <div class="about-card">
+                    <i class="fa-solid fa-bullseye about-icon"></i>
+                    <h3>End-to-End Data Lifecycle</h3>
+                    <p>
+                        From setting up automated ETL data pipelines and performing deep Exploratory Data Analysis (EDA) to building interactive BI dashboards and foundational ML predictive models, I handle the entire data lifecycle efficiently.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       TECHNICAL SKILLS SECTION
+       ========================================================================== -->
+    <section id="skills" class="section-padding" style="background: rgba(255, 255, 255, 0.01);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Technical <span class="gradient-text">Skills</span></h2>
+                <p class="section-subtitle">My core toolset and technical competencies categorized by domain.</p>
+            </div>
+
+            <div class="skills-grid">
+                <!-- Languages & Analytics -->
+                <div class="skill-category">
+                    <div class="category-title">
+                        <i class="fa-solid fa-code"></i> Languages & Core
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag"><i class="fa-brands fa-python"></i> Python</span>
+                        <span class="skill-tag"><i class="fa-solid fa-database"></i> SQL (PostgreSQL, MySQL)</span>
+                        <span class="skill-tag"><i class="fa-solid fa-table"></i> Advanced Excel (VBA/Macros)</span>
+                    </div>
+                </div>
+
+                <!-- Visualization & BI -->
+                <div class="skill-category">
+                    <div class="category-title">
+                        <i class="fa-solid fa-chart-pie"></i> Visualization & BI
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag"><i class="fa-solid fa-chart-column"></i> Power BI</span>
+                        <span class="skill-tag"><i class="fa-solid fa-chart-line"></i> Tableau</span>
+                        <span class="skill-tag"><i class="fa-solid fa-layer-group"></i> Matplotlib & Seaborn</span>
+                    </div>
+                </div>
+
+                <!-- Data Engineering / EDA -->
+                <div class="skill-category">
+                    <div class="category-title">
+                        <i class="fa-solid fa-gears"></i> Data Processing
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag"><i class="fa-solid fa-filter"></i> Data Cleaning</span>
+                        <span class="skill-tag"><i class="fa-solid fa-diagram-project"></i> ETL Pipelines</span>
+                        <span class="skill-tag"><i class="fa-solid fa-magnifying-glass-chart"></i> EDA (Exploratory Analysis)</span>
+                        <span class="skill-tag"><i class="fa-solid fa-cubes"></i> Pandas & NumPy</span>
+                    </div>
+                </div>
+
+                <!-- Machine Learning Basics -->
+                <div class="skill-category">
+                    <div class="category-title">
+                        <i class="fa-solid fa-robot"></i> Machine Learning
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag"><i class="fa-solid fa-network-wired"></i> Scikit-Learn</span>
+                        <span class="skill-tag"><i class="fa-solid fa-arrow-trend-up"></i> Regression Analysis</span>
+                        <span class="skill-tag"><i class="fa-solid fa-boxes-stacked"></i> Classification Models</span>
+                        <span class="skill-tag"><i class="fa-solid fa-diagram-nested"></i> Clustering (K-Means)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       FEATURED PROJECTS SECTION
+       ========================================================================== -->
+    <section id="projects" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
+                <p class="section-subtitle">Real-world data applications, dashboards, and analytics pipelines.</p>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon-box">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link-icon" title="View Code on GitHub"><i class="fa-brands fa-github"></i></a>
+                            <a href="#" class="project-link-icon" title="Live Interactive Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <h3 class="project-title">Sales Performance & Executive Dashboard</h3>
+                        <p class="project-description">
+                            Interactive Power BI & SQL dashboard tracking revenue, regional metrics, user cohorts, and sales rep performance for an e-commerce platform.
+                        </p>
+                        <div class="project-metrics">
+                            <div class="metric-item">
+                                <span class="metric-label">Key Metric Achieved:</span>
+                                <span class="metric-value">+18% Revenue Optimization</span>
+                            </div>
+                        </div>
+                        <div class="project-tags">
+                            <span class="project-tag">Power BI</span>
+                            <span class="project-tag">SQL</span>
+                            <span class="project-tag">Data Modeling</span>
+                            <span class="project-tag">DAX</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon-box">
+                            <i class="fa-solid fa-user-minus"></i>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link-icon" title="View Code on GitHub"><i class="fa-brands fa-github"></i></a>
+                            <a href="#" class="project-link-icon" title="Live Interactive Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <h3 class="project-title">Customer Churn Prediction Model</h3>
+                        <p class="project-description">
+                            End-to-end Python ML project predicting customer churn risk for a telecom enterprise using Logistic Regression and Random Forest algorithms.
+                        </p>
+                        <div class="project-metrics">
+                            <div class="metric-item">
+                                <span class="metric-label">Model Performance:</span>
+                                <span class="metric-value">86% Accuracy Rate</span>
+                            </div>
+                        </div>
+                        <div class="project-tags">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">Scikit-Learn</span>
+                            <span class="project-tag">Pandas</span>
+                            <span class="project-tag">Machine Learning</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon-box">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link-icon" title="View Code on GitHub"><i class="fa-brands fa-github"></i></a>
+                            <a href="#" class="project-link-icon" title="Live Interactive Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <h3 class="project-title">E-Commerce Data Pipeline & EDA</h3>
+                        <p class="project-description">
+                            Comprehensive data cleaning, automated transformation script, and detailed exploratory analysis identifying buying behavior trends and inventory bottlenecks.
+                        </p>
+                        <div class="project-metrics">
+                            <div class="metric-item">
+                                <span class="metric-label">Data Processed:</span>
+                                <span class="metric-value">500,000+ Records</span>
+                            </div>
+                        </div>
+                        <div class="project-tags">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">ETL</span>
+                            <span class="project-tag">EDA</span>
+                            <span class="project-tag">Tableau</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       EXPERIENCE & EDUCATION TIMELINE
+       ========================================================================== -->
+    <section id="experience" class="section-padding" style="background: rgba(255, 255, 255, 0.01);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Experience & <span class="gradient-text">Education</span></h2>
+                <p class="section-subtitle">My professional journey and academic background.</p>
+            </div>
+
+            <div class="timeline-container">
+                <!-- Timeline Item 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2023 - Present</span>
+                        <h3 class="timeline-role">Data Analyst</h3>
+                        <div class="timeline-company">Tech Solutions Inc.</div>
+                        <p class="timeline-desc">
+                            Engineered complex SQL scripts to extract operational data, built 15+ interactive Tableau dashboards for executive leadership, and reduced weekly manual reporting overhead by 40% using automated Python scripts.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2022 - 2023</span>
+                        <h3 class="timeline-role">Junior Data Analyst Intern</h3>
+                        <div class="timeline-company">Analytics Lab</div>
+                        <p class="timeline-desc">
+                            Cleaned and preprocessed customer dataset anomalies, performed exploratory data analysis (EDA) using Excel and Python, and assisted in building Power BI reports for client evaluation.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2019 - 2023</span>
+                        <h3 class="timeline-role">Bachelor of Computer Applications / Analytics</h3>
+                        <div class="timeline-company">University Degree</div>
+                        <p class="timeline-desc">
+                            Focused coursework on Database Management Systems (DBMS), Applied Statistics, Data Warehousing, and Fundamentals of Computer Programming.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       CONTACT SECTION
+       ========================================================================== -->
+    <section id="contact" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In <span class="gradient-text">Touch</span></h2>
+                <p class="section-subtitle">Interested in collaborating or hiring for your team? Let's connect!</p>
+            </div>
+
+            <div class="contact-grid">
+                <!-- Contact Info Card -->
+                <div class="contact-info-card">
+                    <h3>Let's talk about data</h3>
+                    <p>I am open to full-time Data Analyst opportunities, freelance projects, and analytics consultations.</p>
+
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <span>Email Me</span>
+                                <a href="mailto:zaid.analyst@example.com">zaid.analyst@example.com</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div class="contact-details">
+                                <span>Location</span>
+                                <p>Open to Remote & On-site Roles</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="https://linkedin.com" target="_blank" class="social-btn" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://github.com" target="_blank" class="social-btn" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                        <a href="mailto:zaid.analyst@example.com" class="social-btn" title="Email"><i class="fa-solid fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <form class="contact-form" action="#" method="POST" onsubmit="event.preventDefault(); alert('Thank you for your message! Zaid will get back to you shortly.');">
+                    <div class="form-group">
+                        <label class="form-label" for="name">Your Name</label>
+                        <input type="text" id="name" class="form-input" placeholder="e.g. John Doe" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="email">Your Email</label>
+                        <input type="email" id="email" class="form-input" placeholder="e.g. john@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="message">Message</label>
+                        <textarea id="message" class="form-textarea" placeholder="Describe your opportunity or project..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary btn-submit">
+                        Send Message <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Zaid. All rights reserved. Built with pure HTML & CSS.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
